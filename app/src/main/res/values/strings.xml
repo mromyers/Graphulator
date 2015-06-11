@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Graphulator</string>
+
+    <string name="action_settings">Graph Window</string>
+    <string name="fun_list">Function List</string>
+    <string name="title_activity_calc">CalcActivity</string>
+    <string name="title_activity_graph_options">Settings</string>
+    <string name="title_activity_equation_list">Function List</string>
+</resources>

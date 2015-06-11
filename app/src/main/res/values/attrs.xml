@@ -1,0 +1,21 @@
+<resources>
+    <declare-styleable name="GraphView">
+        <attr name="epsilon" format="float"/>
+        <attr name="x_min" format="float"/>
+        <attr name="x_max" format="float"/>
+        <attr name="y_min" format="float"/>
+        <attr name="y_max" format="float"/>
+        <attr name="borderColor" format="color"/>
+        <attr name="borderAlpha" format="integer"/>
+        <attr name="borderWidth" format="integer"/>
+        <attr name="axesColor" format="color"/>
+        <attr name="axesAlpha" format="integer"/>
+        <attr name="axesWidth" format="integer"/>
+        <attr name="curveWidth" format="float" />
+        <attr name="numCurves" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="ColorView">
+        <attr name="color" format="color"/>
+        <attr name="square" format="boolean"/>
+    </declare-styleable>
+</resources>
