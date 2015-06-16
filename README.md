@@ -1,2 +1,2 @@
 # Graphulator
-A *Grap*hing Calc*ulator*.
+A **Grap**hing Calc**ulator**.
