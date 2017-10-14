@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewDebug;
 import android.widget.EditText;
 import android.widget.GridView;
 
@@ -27,12 +28,14 @@ public class GraphOptionsActivity extends Activity {
         EditText x_max = (EditText) findViewById(R.id.x_max);
         EditText y_min = (EditText) findViewById(R.id.y_min);
         EditText y_max = (EditText) findViewById(R.id.y_max);
+        EditText line_weight = (EditText) findViewById(R.id.line_weight);
         EditText epsilon = (EditText) findViewById(R.id.epsilon);
         x_min.setText(Float.toString(window[0]));
         x_max.setText(Float.toString(window[1]));
         y_min.setText(Float.toString(window[2]));
         y_max.setText(Float.toString(window[3]));
         epsilon.setText(Float.toString(window[4]));
+        line_weight.setText(Float.toString(0));
     }
 
     @Override
@@ -49,14 +52,15 @@ public class GraphOptionsActivity extends Activity {
         EditText y_min = (EditText) findViewById(R.id.y_min);
         EditText y_max = (EditText) findViewById(R.id.y_max);
         EditText epsilon = (EditText) findViewById(R.id.epsilon);
+        EditText line_weight = (EditText) findViewById(R.id.line_weight);
         try {
             float[] window = {
                     Float.parseFloat(x_min.getText().toString()),
                     Float.parseFloat(x_max.getText().toString()),
                     Float.parseFloat(y_min.getText().toString()),
                     Float.parseFloat(y_max.getText().toString()),
-                    Float.parseFloat(epsilon.getText().toString())
-
+                    Float.parseFloat(epsilon.getText().toString()),
+                    Float.parseFloat(line_weight.getText().toString())
             };
             intent.putExtra(GRAPH_WINDOW, window);
             setResult(RESULT_OK, intent);

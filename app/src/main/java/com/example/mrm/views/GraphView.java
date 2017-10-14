@@ -30,7 +30,7 @@ public class GraphView extends View {
     Context context;
     public float epsilon;
     int height, width;
-    public float x_min, x_max, y_min, y_max;
+    public float x_min, x_max, y_min, y_max, weight = 0f;
     private float x_scale, y_scale;
     private Parser parser;
     private int[] defColors = {
@@ -278,6 +278,7 @@ public class GraphView extends View {
         }
 
         public void drawToCanvas(){
+            paint.setStrokeWidth(weight);
             if(active) {
                 Point prev = new Point(Float.NaN, Float.NaN);
                 for (Point p : savedSegment) {

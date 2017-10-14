@@ -36,6 +36,7 @@ public class MainActivity extends Activity {
     private GraphView graphView;
     private Spinner spinner;
     private EditText inputText;
+    private EditText line_weight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +54,14 @@ public class MainActivity extends Activity {
                 "+", "-", "*", "/", "^", "fun",
                 "1", "2", "3", "4", "5", "clr",
                 "6", "7", "8", "9", "0", "del",
-                "(", ")", ".", " ", "x", "<-'"
+                "(", ")", ".", " ", "x", "<--"
         };
 
         final String[] buttonText2 = new String[]{
                 "sin", "cos", "tan", "abs", "sqrt", "op",
                 "1", "2", "3", "4", "5", "clr",
                 "6", "7", "8", "9", "0", "del",
-                "(", ")", ".", " ", "x", "<-'"
+                "(", ")", ".", " ", "x", "<--"
         };
         final String[] spinnerText = y_subs(9);
 
@@ -82,7 +83,7 @@ public class MainActivity extends Activity {
                         inputText.setText((tstring.length() == 0) ? "" :
                                 inputText.getText().subSequence(0, tstring.length() - 1).toString());
                         break;
-                    case "<-'":
+                    case "<--":
                         graphView.setSlot(curSlot, inputText.getText().toString());
                         break;
                     case "clr":
@@ -146,7 +147,7 @@ public class MainActivity extends Activity {
     public void openWindowSettings() {
         Intent intent = new Intent(this, GraphOptionsActivity.class);
         final GraphView graphView = (GraphView) findViewById(R.id.graph);
-        float[] window = {graphView.x_min, graphView.x_max, graphView.y_min, graphView.y_max, graphView.epsilon};
+        float[] window = {graphView.x_min, graphView.x_max, graphView.y_min, graphView.y_max, graphView.epsilon, graphView.weight};
         intent.putExtra(GRAPH_WINDOW, window);
         startActivityForResult(intent, WINDOW_OPTION_REQUEST);
     }
@@ -176,6 +177,7 @@ public class MainActivity extends Activity {
                 graphView.y_min = window[2];
                 graphView.y_max = window[3];
                 graphView.epsilon = window[4];
+                graphView.weight = window[5];
                 break;
             case FUNCTION_LIST_REQUEST:
                 if(resultCode == RESULT_OK) {
@@ -220,6 +222,7 @@ public class MainActivity extends Activity {
         editor.putFloat("y_min", graphView.y_min);
         editor.putFloat("y_max", graphView.y_max);
         editor.putFloat("epsilon", graphView.epsilon);
+        editor.putFloat("weight", graphView.weight);
 
         editor.commit();
         databaseManager = new DatabaseManager(this);
@@ -236,6 +239,7 @@ public class MainActivity extends Activity {
         graphView.y_min = settings.getFloat("y_min", -10f);
         graphView.y_max = settings.getFloat("y_max", 10f);
         graphView.epsilon = settings.getFloat("epsilon", 0.1f);
+        graphView.weight = settings.getFloat("weight", 0f);
         databaseManager = new DatabaseManager(this);
         LinkedList<ContentValues> list = databaseManager.getRows();
             graphView.setSlots(list);
